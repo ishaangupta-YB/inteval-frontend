@@ -4,9 +4,9 @@ import { FileUpload } from "./components/file-upload";
 import { ResultsTable } from "./components/results-table";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { LinkPreview } from "./components/ui/link-preview";
+import { HoverBorderGradient } from "./components/ui/hover-border-gradient";
 
 interface EvaluationResult {
   question: string;
@@ -98,7 +98,9 @@ function App() {
       <div className="min-h-screen bg-background p-8 flex flex-col">
         <div className="container mx-auto space-y-8 flex-grow">
           <div className="flex justify-between items-center">
-            <a className="text-4xl font-bold" href="/">IntEval</a>
+            <a className="text-4xl font-bold" href="/">
+              IntEval
+            </a>
             <ModeToggle />
           </div>
 
@@ -110,12 +112,21 @@ function App() {
                   accept=".json"
                   className="flex-1"
                 />
-                <Button
+                {/* <Button
                   onClick={handleProcess}
                   disabled={!file || isProcessing}
                 >
                   Process Evaluation
-                </Button>
+                </Button> */}
+                <HoverBorderGradient
+                  containerClassName="rounded-full"
+                  as="button"
+                  onClick={handleProcess}
+                  disabled={!file || isProcessing}
+                  className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
+                >
+                  <span>Process Evaluation</span>
+                </HoverBorderGradient>
               </div>
 
               {isProcessing && (
@@ -137,13 +148,13 @@ function App() {
           <div className="container mx-auto">
             <div className="border-t border-border pt-4">
               <p className="text-sm text-muted-foreground text-center flex items-center justify-center gap-2">
-              © 2024 IntEval. All rights reserved. Created by{" "}
+                © 2024 IntEval. All rights reserved. Created by{" "}
                 <LinkPreview
                   url="https://www.linkedin.com/in/ishaangupta1201"
                   className="font-medium text-primary hover:underline inline-flex items-center"
                 >
                   ishaangupta1201
-                </LinkPreview>{" "} 
+                </LinkPreview>{" "}
               </p>
             </div>
           </div>
